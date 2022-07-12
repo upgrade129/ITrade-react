@@ -30,12 +30,21 @@ import USERLIST from '../_mock/user';
 
 // ----------------------------------------------------------------------
 
+// const TABLE_HEAD = [
+//   { id: 'name', label: 'Name', alignRight: false },
+//   { id: 'company', label: 'Company', alignRight: false },
+//   { id: 'role', label: 'Role', alignRight: false },
+//   { id: 'isVerified', label: 'Verified', alignRight: false },
+//   { id: 'status', label: 'Status', alignRight: false },
+//   { id: '' },
+// ];
+
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
+  { id: 'name', label: 'Stock Name', alignRight: false },
+  { id: 'date', label: 'Date', alignRight: false },
+  { id: 'quantity', label: 'Quantity', alignRight: false },
+  { id: 'amount', label: 'Amount', alignRight: false },
   { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
 ];
 
@@ -137,11 +146,11 @@ export default function User() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Transcation History
           </Typography>
-          <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {/* <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
             New User
-          </Button>
+          </Button> */}
         </Stack>
 
         <Card>
@@ -161,7 +170,8 @@ export default function User() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    // const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    const { id, name, date, quantity, amount, role } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 
                     return (
@@ -173,23 +183,29 @@ export default function User() {
                         selected={isItemSelected}
                         aria-checked={isItemSelected}
                       >
-                        <TableCell padding="checkbox">
+                        {/* <TableCell padding="checkbox">
                           <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
-                        </TableCell>
-                        <TableCell component="th" scope="row" padding="none">
+                        </TableCell> */}
+                        <TableCell component="th" scope="row" padding="normal">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            {/* <Avatar alt={name} src={avatarUrl} /> */}
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
-                        <TableCell align="left">{company}</TableCell>
-                        <TableCell align="left">{role}</TableCell>
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-                        <TableCell align="left">
+                        <TableCell align="left">{"11.2.2022"}</TableCell>
+                        <TableCell align="left">{quantity}</TableCell>
+                        <TableCell align="left">{amount}</TableCell>
+                        {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
+                        {/* <TableCell align="left">
                           <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
                             {sentenceCase(status)}
+                          </Label>
+                        </TableCell> */}
+                        <TableCell align="left">
+                          <Label variant="ghost" color={(role === "sell" && 'error') || 'success'}>
+                            {sentenceCase(role)}
                           </Label>
                         </TableCell>
 

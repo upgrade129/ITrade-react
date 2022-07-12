@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
-import { Box, Card, Link, Typography, Stack } from '@mui/material';
+import { Box, Card, Link, Typography, Stack, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
 // components
 import Label from '../../../components/Label';
 import { ColorPreview } from '../../../components/color-utils';
+import ProductDetailDialouge from './ProductDetailDialouge';
 
 // ----------------------------------------------------------------------
 
@@ -28,8 +30,16 @@ ShopProductCard.propTypes = {
 export default function ShopProductCard({ product }) {
   const { name, cover, price, colors, status, priceSale } = product;
 
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   return (
-    <Card>
+    <Card onClick={() => navigate("/dashboard/strategy")}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         {status && (
           <Label
@@ -57,7 +67,14 @@ export default function ShopProductCard({ product }) {
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+          {/* <ColorPreview colors={colors} /> */}
+          <Box>
+            <Button variant="contained" color="success">
+              Execute
+            </Button>
+            {/* <Button onClick={handleClickOpen}>Details</Button> */}
+            <ProductDetailDialouge />
+          </Box>
           <Typography variant="subtitle1">
             <Typography
               component="span"
