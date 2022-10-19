@@ -19,10 +19,10 @@ StrategyGrowthGraphs.propTypes = {
 export default function StrategyGrowthGraphs({ title, subheader, chartLabels, chartData, ...other }) {
   const theme = useTheme();
   const chartOptions = merge(BaseOptionChart(), {
-    colors: [
-      theme.palette.grey[300],
-      theme.palette.primary.main
-    ],
+    // colors: [
+    //   "#FFFF00",
+    //   theme.palette.primary.main
+    // ],
     plotOptions: {
       bar: {
         colors: {

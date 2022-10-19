@@ -27,12 +27,45 @@ export default function AppWebsiteVisits({ title, subheader, chartLabels, chartD
       y: {
         formatter: (y) => {
           if (typeof y !== 'undefined') {
-            return `${y.toFixed(0)} Percent`;
+            return `${y.toFixed(0)}`;
           }
           return y;
         },
       },
     },
+    chart: {
+      zoom: {
+          enabled: true,
+          type: 'x',  
+          autoScaleYaxis: false,  
+          zoomedArea: {
+            fill: {
+              color: '#90CAF9',
+              opacity: 0.4
+            },
+            stroke: {
+              color: '#0D47A1',
+              opacity: 0.4,
+              width: 1
+            }
+          }
+      },
+      toolbar: {
+        show: true,
+        offsetX: 0,
+        offsetY: 0,
+        tools: {
+          download: true,
+          selection: true,
+          zoom: true,
+          zoomin: true,
+          zoomout: true,
+          pan: true,
+          reset: true || '<img src="/static/icons/reset.png" width="20">',
+          customIcons: []
+        },
+      }
+  },
   });
 
   return (

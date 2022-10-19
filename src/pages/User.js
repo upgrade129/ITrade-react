@@ -17,16 +17,22 @@ import {
   Typography,
   TableContainer,
   TablePagination,
+  Grid,
+  CardHeader
 } from '@mui/material';
+// sections
+import { AppWebsiteVisits } from '../sections/@dashboard/app';
+import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
+
 // components
 import Page from '../components/Page';
 import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
 import Iconify from '../components/Iconify';
 import SearchNotFound from '../components/SearchNotFound';
-import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
+
 
 // ----------------------------------------------------------------------
 
@@ -146,14 +152,48 @@ export default function User() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Transcation History
+            Portfolio
           </Typography>
           {/* <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
             New User
           </Button> */}
         </Stack>
 
+        <Grid item xs={12} md={6} lg={12} sx ={{ mb: 2 }}>
+            <AppWebsiteVisits
+              title="Combined Equity Curve"
+              chartLabels={[
+                '01/01/2022',
+                '02/01/2022',
+                '03/01/2022',
+                '04/01/2022',
+                '05/01/2022',
+                '06/01/2022',
+                '07/01/2022',
+                '08/01/2022',
+                '09/01/2022',
+                '10/01/2022',
+                '11/01/2022',
+              ]}
+              chartData={[
+                {
+                  name: 'ITrade',
+                  type: 'area',
+                  fill: 'gradient',
+                  data: [32010, 32310, 32410, 33710, 33810, 34010, 34210, 34310, 34610, 34710, 35510],
+                },
+                {
+                  name: 'Strategy - Camaflouge',
+                  type: 'line',
+                  fill: 'solid',
+                  data: [31010, 31310, 31410, 32710, 31810, 32010, 33210, 32310, 34010, 32710, 34510],
+                },
+              ]}
+            />
+          </Grid>
+
         <Card>
+        <CardHeader title="Transactions" />
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
           <Scrollbar>

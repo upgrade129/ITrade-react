@@ -21,10 +21,10 @@ export default function EcommerceShop() {
   };
 
   return (
-    <Page title="Dashboard: Products">
+    <Page title="Strategies">
       <Container>
-        <Typography variant="h4" sx={{ mb: 5 }}>
-          Products
+        <Typography variant="h4">
+          Strategies
         </Typography>
 
         <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>

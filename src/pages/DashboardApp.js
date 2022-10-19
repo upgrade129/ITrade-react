@@ -18,11 +18,20 @@ import {
   AppConversionRates,
 } from '../sections/@dashboard/app';
 
+import { SubscribedStrategies } from '../sections/@dashboard/dashboard';
+
+import PRODUCTS from '../_mock/products';
+import DashboardGraphData from '../_mock/dashboardGraph';
+
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
   const theme = useTheme();
+  // const dateAndTime = DashboardGraphData.result.map((i) => ( new Date(i.time) ) )
+  const dateAndTime = DashboardGraphData.result.map((i) => (i.time))
+  const closeData = DashboardGraphData.result.map((i) => ( i.close ))
 
+  console.log("date", dateAndTime)
   return (
     <Page title="Dashboard">
       <Container maxWidth="xl">
@@ -30,64 +39,68 @@ export default function DashboardApp() {
           Hi, Welcome back
         </Typography>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={3} sx={{ mb: 3 }}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Profit" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="Profit/Loss" total={714000} icon={'ant-design:android-filled'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Loss" total={234} color="error" icon={'ant-design:bug-filled'} />
-          </Grid>
+          {/* <Grid item xs={12} sm={6} md={3}>
+            <AppWidgetSummary title="Strategies subscribed" total={2} color="error" icon={'ant-design:bug-filled'} />
+          </Grid> */}
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Items purchased" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title="Strategies subscribed" total={2} color="error" icon={'ant-design:apple-filled'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
+          {/* <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="Items sold" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
-          </Grid>
+          </Grid> */}
 
           <Grid item xs={12} md={6} lg={12}>
             <AppWebsiteVisits
-              title="Monthly Stats"
+              title="Combined Equity curve of all strategies"
               subheader="(+43%) than last year"
-              chartLabels={[
-                '01/01/2022',
-                '02/01/2022',
-                '03/01/2022',
-                '04/01/2022',
-                '05/01/2022',
-                '06/01/2022',
-                '07/01/2022',
-                '08/01/2022',
-                '09/01/2022',
-                '10/01/2022',
-                '11/01/2022',
-              ]}
+              chartLabels={
+                dateAndTime
+              //   [
+              //   '01/01/2022',
+              //   '02/01/2022',
+              //   '03/01/2022',
+              //   '04/01/2022',
+              //   '05/01/2022',
+              //   '06/01/2022',
+              //   '07/01/2022',
+              //   '08/01/2022',
+              //   '09/01/2022',
+              //   '10/01/2022',
+              //   '11/01/2022',
+              // ]
+            }
               chartData={[
+                // {
+                //   name: 'Profit',
+                //   type: 'column',
+                //   fill: 'solid',
+                //   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                // },
+                // {
+                //   name: 'ITrade',
+                //   type: 'area',
+                //   fill: 'gradient',
+                //   data: [32010, 32310, 32410, 33710, 33810, 34010, 34210, 34310, 34610, 34710, 35510],
+                // },
                 {
-                  name: 'Profit',
-                  type: 'column',
-                  fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
-                },
-                {
-                  name: 'Loss',
-                  type: 'area',
-                  fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-                },
-                {
-                  name: 'AVG',
+                  name: 'NIFTY',
                   type: 'line',
                   fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                  // data: [31010, 31310, 31410, 32710, 31810, 32010, 33210, 32310, 34010, 32710, 34510],
+                  data: closeData
                 },
               ]}
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
               title="Current Visits"
               chartData={[
@@ -122,7 +135,19 @@ export default function DashboardApp() {
                 { label: 'United Kingdom', value: 1380 },
               ]}
             />
-          </Grid>
+          </Grid> */}
+        </Grid>
+        <Grid spacing={3} xs={12} sm={6} md={3} >
+          
+        <Container>
+        <Typography variant="h4">
+          Subscribed Strategies
+        </Typography>
+
+        <SubscribedStrategies products={PRODUCTS} />
+       
+      </Container>
+
 
           {/* <Grid item xs={12} md={6} lg={4}>
             <AppCurrentSubject

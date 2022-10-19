@@ -11,6 +11,8 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
 import Strategy from './pages/Strategy';
+import OurStrategy from './pages/OurStrategy';
+import Profile from './pages/Profile';
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +26,9 @@ export default function Router() {
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
-        { path: 'strategy', element: <Strategy />}
+        { path: 'strategy', element: <Strategy />},
+        { path: 'ourStrategy', element: <OurStrategy />},
+        { path: 'profile', element: <Profile />},
       ],
     },
     {

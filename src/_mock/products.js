@@ -4,9 +4,9 @@ import { sample } from 'lodash';
 // ----------------------------------------------------------------------
 
 const PRODUCT_NAME = [
-  'Strategy 1',
-  'Strategy 2',
-  'Strategy 3',
+  'CamaFlouge',
+  'Co-related straddles',
+  'Trend follower',
   // 'Nike Air Force 1 NDESTRUKT',
   // 'Nike Space Hippie 04',
   // 'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
